@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:ignore="MissingConstraints"
+        android:gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_marginHorizontal="10dp"
+            >
+
+
+            <TextView
+                android:id="@+id/textView_connection_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NO_DATA"
+                tools:ignore="MissingConstraints"
+                android:textAlignment="center"
+                />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_marginHorizontal="10dp"
+            >
+
+
+            <Button
+                android:id="@+id/button_check_connection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="51dp"
+                android:layout_weight="1"
+                android:text="Check"
+                android:textSize="10sp"
+                />
+
+
+            <ImageButton
+
+                android:id="@+id/imageButton_connection_settings"
+                android:layout_marginRight="140dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_menu_manage" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="200dp">
+
+
+            <ImageButton
+                android:id="@+id/imageButton_power"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_lock_power_off" />
+
+            <ImageButton
+                android:id="@+id/imageButton_screenshot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_menu_crop" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+</android.support.design.widget.CoordinatorLayout>
