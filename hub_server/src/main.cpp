@@ -23,35 +23,54 @@ unsigned init(void) {
     char clientMsg[DEFAULT_BUFLEN]; 
 
     log::log("----------------------------------", 0);
-    log::log("Servidor iniciado", 0);
+    log::log("Servidor started", 0);
 
-    log::log("Iniciando ListenSocket...", 0);
+    log::log("Starting ListenSocket...", 0);
     _sockets = server::_initListenSocket("80");
     
-    log::log("Escuchando...", 0);
+    log::log("Listening...", 0);
     _sockets = server::_listen(_sockets);
 
-    log::log("Aceptando...", 0);
+    log::log("Accepting...", 0);
     _sockets = server::_accept(_sockets);
 
     
-    log::log("Esperando mensaje del cliente", 0);
+    log::log("Waiting client code", 0);
     server::_waitMsg(_sockets.ClientSocket, clientMsg, DEFAULT_BUFLEN);
-    log::log(concat("Recibido: ", clientMsg), 0);
+    log::log(concat("Ccode received:: ", clientMsg), 0);
     
-    if(clientMsg == "110") {
-        log::log("apagar recibido",0);
-    }
+    char* response = "000";
 
-    char* msg = "201";
-    log::log( concat("Enviando mensaje: ", msg), 0);
-    server::_sendMsg(_sockets.ClientSocket, msg, strlen(msg));
-    log::log("Mensaje enviado", 0);
+     switch (clientMsg)
+      {
+         case "101":   //check_connexion
+            log::log("Checking app connection", 0);
+            check_connection();
+            break;
+         case "110":   //shutdown
+            log::log("Executing shutdown", 0);
+            shutdown();
+            break;
+         default:
+            log::log("Unknown code: " + clientMsg, 1);
+      }
+
+    log::log( concat("Sending code: ", response), 0);
+    server::_sendMsg(_sockets.ClientSocket, response, strlen(response));
+    log::log("Code sent", 0);
 
     server::_shutdownSocket(_sockets.ClientSocket);
-    log::log("Servidor apagado\n", 0);
+    log::log("Server shutdown\n", 0);
 
     return 0;
+}
+
+void check_connection() {
+    char* response = "201";
+}
+
+void shutdown() {
+    char* response = "210";
 }
 
 int main(int argc, char* argv[]) {

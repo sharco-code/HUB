@@ -1,3 +1,6 @@
+error codes:
+000     error_code
+
 client send:
 101     check_connexion
 110     shutdown
