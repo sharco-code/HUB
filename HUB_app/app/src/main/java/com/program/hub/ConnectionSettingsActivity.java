@@ -63,7 +63,7 @@ public class ConnectionSettingsActivity extends AppCompatActivity {
     private void setIP() {
         Model.ip = this.editText_IP.getText().toString();
         Model.port = Integer.parseInt(this.editText_Port.getText().toString());
-
+        MainActivity.print("New IP: "+ Model.ip+":"+Model.port,false);
         reloadActivity();
     }
 

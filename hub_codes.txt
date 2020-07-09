@@ -1,0 +1,9 @@
+client send:
+101     check_connexion
+110     shutdown
+
+server send:
+201     check_connexion_ok
+210     shutdown_ok
+
+

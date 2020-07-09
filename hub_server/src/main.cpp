@@ -39,11 +39,11 @@ unsigned init(void) {
     server::_waitMsg(_sockets.ClientSocket, clientMsg, DEFAULT_BUFLEN);
     log::log(concat("Recibido: ", clientMsg), 0);
     
-    if(clientMsg == "apagar") {
+    if(clientMsg == "110") {
         log::log("apagar recibido",0);
     }
 
-    char* msg = (char*)"check_complete";
+    char* msg = "201";
     log::log( concat("Enviando mensaje: ", msg), 0);
     server::_sendMsg(_sockets.ClientSocket, msg, strlen(msg));
     log::log("Mensaje enviado", 0);

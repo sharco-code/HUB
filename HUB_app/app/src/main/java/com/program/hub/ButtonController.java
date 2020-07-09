@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
 
 public class ButtonController {
 
@@ -24,28 +25,45 @@ public class ButtonController {
         MainActivity.imageButton_power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Connection connection = new Connection(Model.ip, Model.port);
-                connection.execute("apagar");
+                power();
             }
         });
+    }
+
+    private void power() {
+        Connection connection = new Connection(Model.ip, Model.port);
+        try {
+            String result = connection.execute("110").get();
+            MainActivity.print("Sending: 110  (shutdown)", false);
+            if(result.equals("210")) {
+                MainActivity.print("Recived: 210  (shutdown_ok)", false);
+            } else {
+                MainActivity.print("Recived: " + result, false);
+            }
+        } catch (Exception e) {
+            MainActivity.print("Could not get response", true);
+        }
+
     }
 
     private void checkconnection() {
 
         Connection connection = new Connection(Model.ip, Model.port);
 
-        MainActivity.textView_connection_status.setText("Waiting...");
-        MainActivity.textView_connection_status.setTextColor(Color.GRAY);
-
+        MainActivity.setConnectionStatus(null);
 
         try {
-            if(connection.execute("check_connexion").get().equals("check_complete")) {
-                MainActivity.textView_connection_status.setText("Connected");
-                MainActivity.textView_connection_status.setTextColor(Color.GREEN);
+            String result = connection.execute("101").get();
+            MainActivity.print("Sending: 101  (check_connexion)", false);
+            if(result.equals("201")) {
+                MainActivity.print("Recived: 201  (check_connexion_ok)", false);
+                MainActivity.setConnectionStatus(true);
+            } else {
+                MainActivity.print("Recived: "+result, false);
             }
         } catch (Exception e) {
-            MainActivity.textView_connection_status.setText("Connection Error");
-            MainActivity.textView_connection_status.setTextColor(Color.RED);
+            MainActivity.print("Could not get response", true);
+            MainActivity.setConnectionStatus(false);
         }
 
     }

@@ -6,108 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        tools:ignore="MissingConstraints"
-        android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
+        <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:layout_marginHorizontal="10dp"
-            >
+            android:gravity="center_horizontal"
+            tools:ignore="MissingConstraints">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:weightSum="2">
 
 
-            <TextView
-                android:id="@+id/textView_connection_status"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="NO_DATA"
-                tools:ignore="MissingConstraints"
-                android:textAlignment="center"
-                />
+                <TextView
+                    android:layout_span="2"
+                    android:id="@+id/textView_connection_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="NO_DATA"
+                    android:textAlignment="center"
+                    tools:ignore="MissingConstraints" />
 
 
-        </TableRow>
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:layout_marginHorizontal="10dp"
-            >
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:weightSum="2">
 
 
-            <Button
-                android:id="@+id/button_check_connection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="51dp"
-                android:layout_weight="1"
-                android:text="Check"
-                android:textSize="10sp"
-                />
+                <Button
+                    android:layout_span="2"
+                    android:id="@+id/button_check_connection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Check"
+                    android:textSize="14sp" />
 
 
-            <ImageButton
+            </TableRow>
 
-                android:id="@+id/imageButton_connection_settings"
-                android:layout_marginRight="140dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_manage" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:minHeight="150dp">
 
 
-        </TableRow>
-        <TableRow
+                <ImageButton
+                    android:id="@+id/imageButton_power"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:minWidth="150dp"
+                    android:minHeight="150dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/ic_lock_power_off" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_screenshot"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="TODO"
+                    android:minWidth="150dp"
+                    android:minHeight="150dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/ic_menu_crop" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="150dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton_command"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:minWidth="150dp"
+                    android:minHeight="150dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_connection_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:minWidth="150dp"
+                    android:minHeight="150dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/ic_menu_manage" />
+            </TableRow>
+
+        </TableLayout>
+
+        <ScrollView
+            android:id="@+id/scrollview_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:minHeight="200dp">
+            android:background="#000000">
 
-
-            <ImageButton
-                android:id="@+id/imageButton_power"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:minWidth="200dp"
-                android:minHeight="200dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@android:drawable/ic_lock_power_off" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5px">
 
-            <ImageButton
-                android:id="@+id/imageButton_screenshot"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:minWidth="200dp"
-                android:minHeight="200dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@android:drawable/ic_menu_crop" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
+                <TextView
+                    android:id="@+id/textView_output"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="--- Hub App started ---"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
