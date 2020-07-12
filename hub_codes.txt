@@ -1,5 +1,6 @@
 error codes:
 000     error_code
+001    unknown_code
 
 client send:
 101     check_connexion

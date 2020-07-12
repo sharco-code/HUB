@@ -41,12 +41,13 @@ public class Connection extends AsyncTask<String, Void, String> {
 
             socket.connect(new InetSocketAddress(host, port), 1000);
 
-            bufferedReader =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             printWriter = new PrintWriter(socket.getOutputStream(), true);
 
             printWriter.write(string);
             printWriter.flush();
 
+            bufferedReader =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line = bufferedReader.readLine(), result = "";
             while (line != null) {
                 result += line;
@@ -58,7 +59,10 @@ public class Connection extends AsyncTask<String, Void, String> {
             socket.close();
 
         } catch (IOException e) {
+            e.printStackTrace();
             return null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return msg;

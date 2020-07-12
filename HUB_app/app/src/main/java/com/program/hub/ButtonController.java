@@ -33,12 +33,12 @@ public class ButtonController {
     private void power() {
         Connection connection = new Connection(Model.ip, Model.port);
         try {
-            String result = connection.execute("110").get();
             MainActivity.print("Sending: 110  (shutdown)", false);
+            String result = connection.execute("110").get();
             if(result.equals("210")) {
                 MainActivity.print("Recived: 210  (shutdown_ok)", false);
             } else {
-                MainActivity.print("Recived: " + result, false);
+                MainActivity.print("Recived: " + result, true);
             }
         } catch (Exception e) {
             MainActivity.print("Could not get response", true);
@@ -47,19 +47,16 @@ public class ButtonController {
     }
 
     private void checkconnection() {
-
         Connection connection = new Connection(Model.ip, Model.port);
-
-        MainActivity.setConnectionStatus(null);
-
         try {
-            String result = connection.execute("101").get();
             MainActivity.print("Sending: 101  (check_connexion)", false);
+            String result = connection.execute("101").get();
             if(result.equals("201")) {
                 MainActivity.print("Recived: 201  (check_connexion_ok)", false);
                 MainActivity.setConnectionStatus(true);
             } else {
-                MainActivity.print("Recived: "+result, false);
+                MainActivity.print("Recived: " + result, true);
+                MainActivity.setConnectionStatus(false);
             }
         } catch (Exception e) {
             MainActivity.print("Could not get response", true);
