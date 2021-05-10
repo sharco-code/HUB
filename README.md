@@ -1,6 +1,6 @@
 # HUB app
 
-App ,made in Andoroid Studio / Java
+App made in Andoroid Studio / Java
 
 # PC Server
 
